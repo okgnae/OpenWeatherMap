@@ -1,5 +1,3 @@
-# pip3.exe install requests
-# https://home.openweathermap.org/api_keys | Default | 522ca5bd15c43b2338651b71c7ceea24
 import requests
 import json
 import datetime
@@ -7,7 +5,8 @@ import socket
 import pymongo
 import time
 
-api_key = '522ca5bd15c43b2338651b71c7ceea24'
+# https://home.openweathermap.org/api_keys
+api_key = ''
 city_name = 'Kuwait'
 units = 'imperial'
 
