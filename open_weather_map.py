@@ -1,17 +1,17 @@
+# pip3.exe install requests
+# https://home.openweathermap.org/api_keys | Default | 522ca5bd15c43b2338651b71c7ceea24
 import requests
 import json
 import datetime
-import socket
 import pymongo
 import time
 
-# https://home.openweathermap.org/api_keys
-api_key = ''
+api_key = '522ca5bd15c43b2338651b71c7ceea24'
 city_name = 'Kuwait'
 units = 'imperial'
 
-SERVER = '127.0.0.1'
-PORT = 1025
+def get_weather(api_key, city_name, units):
+    return parse_weather(json.loads(requests.get(f"http://api.openweathermap.org/data/2.5/weather?q={city_name}&appid={api_key}&units={units}").content))
 
 def parse_weather(response_json):
     timestamp = datetime.datetime.utcnow().timestamp()
@@ -28,9 +28,6 @@ def parse_weather(response_json):
         'Tempature':weather_temp
         }
 
-def get_weather(api_key, city_name, units):
-    return parse_weather(json.loads(requests.get(f"http://api.openweathermap.org/data/2.5/weather?q={city_name}&appid={api_key}&units={units}").content))
-
 def send_weather():
     myclient = pymongo.MongoClient("mongodb://localhost:27017/")
     mydb = myclient["weather"]
@@ -40,4 +37,3 @@ def send_weather():
 while True:
     send_weather()
     time.sleep(300)
-    
