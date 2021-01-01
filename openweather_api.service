@@ -1,0 +1,14 @@
+[Unit]
+Description=https://home.openweathermap.org
+After=network.target
+
+[Service]
+Type=simple
+User=root
+WorkingDirectory=/opt/openweather_api
+ExecStart=/usr/bin/python3 /opt/openweather_api/openweather_api.py
+Restart=always
+RestartSec=4
+
+[Install]
+WantedBy=multi-user.target
