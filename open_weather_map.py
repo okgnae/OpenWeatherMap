@@ -33,6 +33,10 @@ def send_weather():
     mycol = mydb["weather"]
     mycol.insert_one(get_weather(api_key, city_name, units))
 
-while True:
-    send_weather()
-    time.sleep(300)
+def main():
+    while True:
+        send_weather()
+        time.sleep(300)
+
+if __name__ == '__main__':
+    main()
